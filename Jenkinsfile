@@ -15,7 +15,7 @@ pipeline {
                     def lastCommitMessage = sh(script: 'git log -1 --pretty=format:%s', returnStdout: true).trim()
 
                     // Define a refined pattern to capture only the issue key (DANIEL-3)
-                    def mergeBranchPattern = ~/Merge pull request #\d+ from (?:[^/]+\/)?([^/]+)/
+                    def mergeBranchPattern = ~/Merge pull request #\d+ from (?:{^/}+\/)?({^/}+)/
                     def matcher = lastCommitMessage =~ mergeBranchPattern
 
                     if (matcher.find()) {
